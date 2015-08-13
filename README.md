@@ -1,9 +1,6 @@
-# gimp-anaglyph
-gimp plugin to create and interactively edit red/cyan green/magenta anaglyphs
-
-
 gimp-anaglyph
 ============
+gimp plugin to create and interactively edit red/cyan green/magenta anaglyphs
 
 This is an interactive plugin to generate and edit red/cyan and green/magenta anaglyph with **gimp**.
 
