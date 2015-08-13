@@ -15,14 +15,12 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${GIMP_C_FLAGS}")
 exec_program(gimptool-2.0 ARGS --libs OUTPUT_VARIABLE GIMP_LIBS)
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${GIMP_LIBS}")
 
-#add_executable(gimp-anaglyph src/anaglyph.c)
-
 #exec_program(gimptool-2.0 ARGS --dry-run --install-bin src/gimp-anaglyph OUTPUT_VARIABLE GIMP_USER_PLUGIN_DIR)
 #install(FILES files... DESTINATION "${GIMP_USER_PLUGIN_DIR}")
 
-add_custom_target(xinstall COMMAND gimptool-2.0 --install-bin src/gimp-anaglyph
+add_custom_target(xinstall COMMAND gimptool-2.0 --install-bin gimp-anaglyph
                           DEPENDS src/gimp-anaglyph)
-add_custom_target(xuninstall COMMAND gimptool-2.0 --uninstall-bin src/gimp-anaglyph)
+add_custom_target(xuninstall COMMAND gimptool-2.0 --uninstall-bin gimp-anaglyph)
 
 add_executable(gimp-anaglyph anaglyph.c)
 
