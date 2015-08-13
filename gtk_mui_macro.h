@@ -22,7 +22,8 @@
 #define UIComboBox obj = gtk_combo_box_new_text();
 #define UICBAppendText(TEXT) gtk_combo_box_append_text (GTK_COMBO_BOX (obj), TEXT);
 #define UILabel(TEXT) obj = gtk_label_new (TEXT);
-#define UISpinButton  obj = gtk_spin_button_new (GTK_ADJUSTMENT(gtk_adjustment_new (50.0, 0.0, 100.0, 1.0, 5.0, 0.0)), 1.0, 0);
+// TODO allow adjustment's parameters when creating the GUI
+#define UISpinButton  obj = gtk_spin_button_new (GTK_ADJUSTMENT(gtk_adjustment_new (50.0, 0.0, 4096.0, 1.0, 5.0, 0.0)), 1.0, 0);
 #define UIConnect(EVENT, CALLBACK, PRIV) g_signal_connect(obj, EVENT, G_CALLBACK(CALLBACK), PRIV);
 #define UIEventBox obj = gtk_event_box_new();
 #define UIContainerAdd gtk_container_add(GTK_CONTAINER(parent), obj);
