@@ -22,7 +22,7 @@ This is an interactive plugin to generate and edit red/cyan and green/magenta an
     - you can *edit* the source layer and the depth channel in any way you like
     - just move the mouse over the *do it* label at the bottom of the GUI panel to update the output
 
-**Note**: once the GUI show up and the channel and layer are created, the source the depth and the output are **bounded** with the current plugin instance, to change layer must be closed and re-opened.
+**Note**: once the GUI show up and the channel and layer are created, the source the depth and the output are **bounded** with the current plugin instance, to create a new anaglyph with a different image the plugin must be closed and re-opened.
 
 **How to build**:
 
