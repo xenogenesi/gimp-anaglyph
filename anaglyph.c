@@ -1,3 +1,11 @@
+/*
+ * (C) 2015 Alex < raziel at eml dot cc >
+ *
+ * LICENSE GNU GENERAL PUBLIC LICENSE Version 2, June 1991
+ * see the file
+ *
+ */
+
 #include <gtk/gtk.h>
 #include <libgimp/gimp.h>
 #include <stdio.h>
@@ -329,16 +337,6 @@ run (const gchar      *name,
 	return;
 }
 
-#if 0
-static void process_row(AnaglyphInfo *ai) {
-
-}
-#endif
-
-//static inline guchar blend(const gint rA, const gint aA, const gint rB, const gint aB) {
-//	return (guchar) ((rA * aA / 255) + (rB * aB * (255 - aA) / (255*255)));
-//}
-
 static inline void red_cyan_displace(const gint width,
 		const gint x,
 		const guchar *src, const gint src_bpp,
@@ -348,8 +346,6 @@ static inline void red_cyan_displace(const gint width,
 	// actually we move red component to right, but being rgb additive it will appear on left
 	// TODO ^ is that so?
 	const gint left_x = x + xoff;
-
-	//out_row[ai->out_bpp * (j - x1) + Blue] = source_row[ai->source_bpp * (j - x1) + Blue];
 
 	if (left_x >= 0 && left_x < width) {
 		if (pixmap_row[left_x >> 3] & (1 << (left_x & 3))) {
@@ -361,12 +357,6 @@ static inline void red_cyan_displace(const gint width,
 			pixmap_row[left_x >> 3] |= 1 << (left_x & 3);
 		}
 	}
-
-//	if (x >= 0 && x < width) {
-//		if (!(pixmap_row[x >> 3] & (1 << (x & 3)))) {
-//			out[out_bpp * x + Red] = src[src_bpp * x + Red];
-//		}
-//	}
 }
 
 static inline void green_magenta_displace(const gint width,
@@ -375,22 +365,21 @@ static inline void green_magenta_displace(const gint width,
 		guchar *out, const gint out_bpp,
 		const gint xoff, guchar *pixmap_row)
 {
-#if 0
+
 	// actually we move green component to right, but being rgb additive it will appear on left
+	// TODO ^ is that so?
 	const gint left_x = x + xoff;
 
 	if (left_x >= 0 && left_x < width) {
 		if (pixmap_row[left_x >> 3] & (1 << (left_x & 3))) {
 			// pixel already in pixmap.. average
-			out[out_bpp * left_x + Green] = AVERAGE(out[out_bpp * left_x + Green], src[src_bpp * x + Green]);
+			out[out_bpp * left_x + Green] = src[src_bpp * x + Green]; //AVERAGE(out[out_bpp * left_x + Green], src[src_bpp * x + Green]);
 		} else {
 			// pixel not in pixmap.. add it
 			out[out_bpp * left_x + Green] = src[src_bpp * x + Green];
 			pixmap_row[left_x >> 3] |= 1 << (left_x & 3);
 		}
 	}
-#endif
-	out[out_bpp * x + Green] = src[src_bpp * x + Green];
 }
 
 static void process_image(AnaglyphInfo *ai) {
